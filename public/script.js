@@ -21,9 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
         data.data.forEach((prueba, index) => {
           const equipoPruebas = prueba.equipoPruebas || [];
           const observaciones = prueba.observaciones || [];
-          const configuracionPrueba = renderKeyValueList(prueba.configuracionPrueba || {});
-          const resultadosEsperados = renderKeyValueList(prueba.resultadosEsperados || {});
-          const resultadosObtenidos = renderKeyValueList(prueba.resultadosObtenidos || {});
+          const configuracionPrueba = renderKeyValueList(
+            prueba.configuracionPrueba || {}
+          );
+          const resultadosEsperados = renderKeyValueList(
+            prueba.resultadosEsperados || {}
+          );
+          const resultadosObtenidos = renderKeyValueList(
+            prueba.resultadosObtenidos || {}
+          );
           const conclusiones = renderKeyValueList(prueba.conclusiones || {});
 
           const pruebaDiv = document.createElement("div");
@@ -98,31 +104,46 @@ document.addEventListener("DOMContentLoaded", () => {
       const nuevaPrueba = {
         proyecto: document.getElementById("proyecto").value,
         fechaPrueba: document.getElementById("fechaPrueba").value,
-        equipoPruebas,
+        equipoPruebas: document
+          .getElementById("equipoPruebas")
+          .value.split(",")
+          .map((miembro) => miembro.trim()),
         requisitosProbados: document
           .getElementById("requisitosProbados")
           .value.split(",")
           .map((item) => item.trim()),
-        configuracionPrueba: JSON.parse(
-          document.getElementById("configuracionPrueba").value || "{}"
+
+        configuracionPrueba: createJSONFromText(
+          document.getElementById("configuracionPrueba").value
         ),
+        pasosPrueba: document
+          .getElementById("pasosPruebas")
+          .value.split(",")
+          .map((item) => item.trim()),
+
         pasosPrueba: document
           .getElementById("pasosPrueba")
           .value.split(",")
           .map((item) => item.trim()),
-        resultadosEsperados: JSON.parse(
-          document.getElementById("resultadosEsperados").value || "{}"
+
+        resultadosEsperados: createJSONFromText(
+          document.getElementById("resultadosEsperados").value
         ),
-        resultadosObtenidos: JSON.parse(
-          document.getElementById("resultadosObtenidos").value || "{}"
+
+        resultadosObtenidos: createJSONFromText(
+          document.getElementById("resultadosObtenidos").value
         ),
-        conclusiones: JSON.parse(
-          document.getElementById("conclusiones").value || "{}"
+
+        conclusiones: createJSONFromText(
+          document.getElementById("conclusiones").value
         ),
-        observaciones,
+
+        observaciones: document
+          .getElementById("observaciones")
+          .value.split(".")
+          .map((obs) => obs.trim()),
       };
 
-      // Enviar la nueva prueba a la API
       fetch(API_URL, {
         method: "POST",
         headers: {
@@ -154,4 +175,15 @@ function renderKeyValueList(obj) {
   return Object.entries(obj)
     .map(([key, value]) => `<li><strong>${key}:</strong> ${value}</li>`)
     .join("");
+}
+
+function createJSONFromText(text) {
+  const lines = text.split("\n").map(line => line.trim()).filter(line => line.length > 0);
+
+  const result = {};
+  lines.forEach((line, index) => {
+    result[`item_${index + 1}`] = line;  // Asigna un nombre de clave dinámico
+  });
+
+  return result;
 }

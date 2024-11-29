@@ -50,52 +50,64 @@
         ]
     },
     {
-        "proyecto": "Sistema de inventarios y logística",
-        "fechaPrueba": "2024-11-27",
+        "proyecto": "Prueba 3",
+        "fechaPrueba": "2024-11-06",
         "equipoPruebas": [
-            "Sofía López",
-            "Carlos Martínez",
-            "Elena Torres"
+            "Miguel",
+            ""
         ],
         "requisitosProbados": [
-            "El sistema debe permitir registrar nuevos productos",
-            "El sistema debe generar reportes de inventarios por categoría",
-            "El sistema debe alertar cuando el stock de un producto sea inferior al mínimo definido"
+            "Leer",
+            "Read"
         ],
         "configuracionPrueba": {
-            "sistemaOperativo": "Ubuntu 22.04",
-            "navegadorWeb": "Mozilla Firefox",
-            "resolucionPantalla": "1366x768"
+            "sisema oper": "lafds"
         },
         "pasosPrueba": [
-            "Iniciar sesión en el sistema con un usuario administrador",
-            "Navegar a la sección de productos y agregar un nuevo producto",
-            "Verificar que el producto se haya registrado correctamente",
-            "Navegar a la sección de reportes y generar un reporte de inventario por categoría",
-            "Reducir el stock de un producto por debajo del mínimo definido",
-            "Verificar que el sistema genera una alerta por stock bajo",
-            "Confirmar que los cambios en el stock se guardan correctamente"
+            "Paso1",
+            "Paso2"
         ],
         "resultadosEsperados": {
-            "productoAgregado": "El nuevo producto se agrega correctamente",
-            "reporteGenerado": "El reporte de inventario por categoría se genera correctamente",
-            "alertaGenerada": "El sistema genera una alerta cuando el stock está bajo",
-            "stockActualizado": "Los cambios en el stock se guardan correctamente"
+            "item_1": "result"
         },
         "resultadosObtenidos": {
-            "productoAgregado": "El nuevo producto se agregó correctamente",
-            "reporteGenerado": "El reporte de inventario por categoría se generó correctamente",
-            "alertaGenerada": "El sistema generó una alerta cuando el stock estaba bajo",
-            "stockActualizado": "Los cambios en el stock se guardaron correctamente"
+            "item_1": "resutl"
         },
         "conclusiones": {
-            "estadoPrueba": "La prueba del sistema se completó exitosamente.",
-            "verificacionRequisitos": "El sistema cumple con los requisitos evaluados y funciona de acuerdo a lo esperado."
+            "item_1": "estas son las concluciones"
         },
         "observaciones": [
-            "El diseño de la interfaz es moderno y fácil de entender.",
-            "La funcionalidad de alertas es efectiva y rápida.",
-            "No se encontraron errores críticos durante la prueba."
+            "observacion"
+        ]
+    },
+    {
+        "proyecto": "Prueba 4",
+        "fechaPrueba": "2024-12-05",
+        "equipoPruebas": [
+            "Adalberto"
+        ],
+        "requisitosProbados": [
+            "requisito 1",
+            "Requisito 2"
+        ],
+        "configuracionPrueba": {
+            "Sistema Operatico": "linux"
+        },
+        "pasosPrueba": [
+            "acceder al navegador",
+            "entrar a la pagina"
+        ],
+        "resultadosEsperados": {
+            "acceder": "acceder correctamente al sistema"
+        },
+        "resultadosObtenidos": {
+            "acceder": "acceder correctamente al sistema"
+        },
+        "conclusiones": {
+            "estado de la prueba": "la prueba se realizo correctamente"
+        },
+        "observaciones": [
+            "esta en observacion"
         ]
     }
 ]
