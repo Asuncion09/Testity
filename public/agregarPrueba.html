@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Prueba</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Agregar Nueva Prueba</h1>
+  <form id="agregarPruebaForm" action="/api/pruebas" method="POST">
+    <!-- Proyecto -->
+    <label for="proyecto">Proyecto:</label>
+    <input type="text" id="proyecto" name="proyecto" placeholder="Nombre del proyecto" required>
+    <br>
+
+    <!-- Fecha de la prueba -->
+    <label for="fechaPrueba">Fecha de la prueba:</label>
+    <input type="date" id="fechaPrueba" name="fechaPrueba" required>
+    <br>
+
+    <!-- Equipo de pruebas -->
+    <label for="equipoPruebas">Equipo de Pruebas:</label>
+    <div id="equipoPruebasContainer">
+      <input type="text" name="equipoPruebas[]" placeholder="Nombre del miembro del equipo" required>
+    </div>
+    <button type="button" onclick="agregarCampoEquipo()">Agregar Miembro</button>
+    <br>
+
+    <!-- Requisitos probados -->
+    <label for="requisitosProbados">Requisitos Probados:</label>
+    <textarea id="requisitosProbados" name="requisitosProbados" placeholder="Lista de requisitos, separados por comas"></textarea>
+    <br>
+
+    <!-- Configuración de prueba -->
+    <label for="configuracionPrueba">Configuración de Prueba:</label>
+    <textarea id="configuracionPrueba" name="configuracionPrueba" placeholder="JSON para configuración de prueba"></textarea>
+    <br>
+
+    <!-- Pasos de prueba -->
+    <label for="pasosPrueba">Pasos de Prueba:</label>
+    <textarea id="pasosPrueba" name="pasosPrueba" placeholder="Lista de pasos, separados por comas"></textarea>
+    <br>
+
+    <!-- Resultados esperados -->
+    <label for="resultadosEsperados">Resultados Esperados:</label>
+    <textarea id="resultadosEsperados" name="resultadosEsperados" placeholder="JSON para resultados esperados"></textarea>
+    <br>
+
+    <!-- Resultados obtenidos -->
+    <label for="resultadosObtenidos">Resultados Obtenidos:</label>
+    <textarea id="resultadosObtenidos" name="resultadosObtenidos" placeholder="JSON para resultados obtenidos"></textarea>
+    <br>
+
+    <!-- Conclusiones -->
+    <label for="conclusiones">Conclusiones:</label>
+    <textarea id="conclusiones" name="conclusiones" placeholder="JSON para conclusiones"></textarea>
+    <br>
+
+    <!-- Observaciones -->
+    <label for="observaciones">Observaciones:</label>
+    <div id="observacionesContainer">
+      <input type="text" name="observaciones[]" placeholder="Observación" required>
+    </div>
+    <button type="button" onclick="agregarCampoObservaciones()">Agregar Observación</button>
+    <br>
+
+    <!-- Botón de enviar -->
+    <button type="submit">Agregar Prueba</button>
+  </form>
+
+  <script>
+    // Función para agregar campos dinámicos para el equipo de pruebas
+    function agregarCampoEquipo() {
+      const container = document.getElementById('equipoPruebasContainer');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'equipoPruebas[]';
+      input.placeholder = 'Nombre del miembro del equipo';
+      container.appendChild(input);
+    }
+
+    // Función para agregar campos dinámicos para observaciones
+    function agregarCampoObservaciones() {
+      const container = document.getElementById('observacionesContainer');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'observaciones[]';
+      input.placeholder = 'Observación';
+      container.appendChild(input);
+    }
+  </script>
+</body>
+</html>

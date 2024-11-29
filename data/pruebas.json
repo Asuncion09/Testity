@@ -1,0 +1,101 @@
+[
+    {
+        "proyecto": "Sistema de gestión de ventas",
+        "fechaPrueba": "2023-02-01",
+        "equipoPruebas": [
+            "Juan Pérez",
+            "Ana García",
+            "Luis Sánchez"
+        ],
+        "requisitosProbados": [
+            "El sistema debe permitir registrar nuevos clientes",
+            "El sistema debe permitir crear nuevas órdenes de venta",
+            "El sistema debe calcular correctamente el total de cada orden de venta"
+        ],
+        "configuracionPrueba": {
+            "sistemaOperativo": "Windows 10",
+            "navegadorWeb": "Google Chrome",
+            "resolucionPantalla": "1920x1080"
+        },
+        "pasosPrueba": [
+            "Iniciar sesión en el sistema con un usuario válido",
+            "Navegar a la sección de clientes y agregar un nuevo cliente",
+            "Verificar que el nuevo cliente ha sido agregado correctamente",
+            "Navegar a la sección de órdenes de venta y crear una nueva orden",
+            "Agregar varios productos a la orden y verificar que el total calculado es correcto",
+            "Confirmar la orden y verificar que se ha guardado correctamente",
+            "Navegar a la sección de reportes y generar un reporte de ventas del mes actual",
+            "Verificar que la orden creada en el paso 4 se incluye en el reporte"
+        ],
+        "resultadosEsperados": {
+            "clienteAgregado": "El nuevo cliente se agrega correctamente",
+            "ordenCreada": "La orden de venta se crea y se guarda correctamente",
+            "totalCalculado": "El total de la orden se calcula correctamente",
+            "ordenIncluidaReporte": "La orden se incluye en el reporte de ventas"
+        },
+        "resultadosObtenidos": {
+            "clienteAgregado": "El nuevo cliente se agregó correctamente",
+            "ordenCreada": "La orden de venta se creó y se guardó correctamente",
+            "totalCalculado": "El total de la orden se calculó correctamente",
+            "ordenIncluidaReporte": "La orden se incluyó en el reporte de ventas"
+        },
+        "conclusiones": {
+            "estadoPrueba": "La prueba de sistema se completó con éxito.",
+            "verificacionRequisitos": "Se verificó que el sistema cumple con los requisitos probados y se comporta de manera esperada."
+        },
+        "observaciones": [
+            "La interfaz de usuario es intuitiva y fácil de usar.",
+            "La velocidad de respuesta del sistema es rápida.",
+            "No se encontraron errores durante la prueba."
+        ]
+    },
+    {
+        "proyecto": "Sistema de inventarios y logística",
+        "fechaPrueba": "2024-11-27",
+        "equipoPruebas": [
+            "Sofía López",
+            "Carlos Martínez",
+            "Elena Torres"
+        ],
+        "requisitosProbados": [
+            "El sistema debe permitir registrar nuevos productos",
+            "El sistema debe generar reportes de inventarios por categoría",
+            "El sistema debe alertar cuando el stock de un producto sea inferior al mínimo definido"
+        ],
+        "configuracionPrueba": {
+            "sistemaOperativo": "Ubuntu 22.04",
+            "navegadorWeb": "Mozilla Firefox",
+            "resolucionPantalla": "1366x768"
+        },
+        "pasosPrueba": [
+            "Iniciar sesión en el sistema con un usuario administrador",
+            "Navegar a la sección de productos y agregar un nuevo producto",
+            "Verificar que el producto se haya registrado correctamente",
+            "Navegar a la sección de reportes y generar un reporte de inventario por categoría",
+            "Reducir el stock de un producto por debajo del mínimo definido",
+            "Verificar que el sistema genera una alerta por stock bajo",
+            "Confirmar que los cambios en el stock se guardan correctamente"
+        ],
+        "resultadosEsperados": {
+            "productoAgregado": "El nuevo producto se agrega correctamente",
+            "reporteGenerado": "El reporte de inventario por categoría se genera correctamente",
+            "alertaGenerada": "El sistema genera una alerta cuando el stock está bajo",
+            "stockActualizado": "Los cambios en el stock se guardan correctamente"
+        },
+        "resultadosObtenidos": {
+            "productoAgregado": "El nuevo producto se agregó correctamente",
+            "reporteGenerado": "El reporte de inventario por categoría se generó correctamente",
+            "alertaGenerada": "El sistema generó una alerta cuando el stock estaba bajo",
+            "stockActualizado": "Los cambios en el stock se guardaron correctamente"
+        },
+        "conclusiones": {
+            "estadoPrueba": "La prueba del sistema se completó exitosamente.",
+            "verificacionRequisitos": "El sistema cumple con los requisitos evaluados y funciona de acuerdo a lo esperado."
+        },
+        "observaciones": [
+            "El diseño de la interfaz es moderno y fácil de entender.",
+            "La funcionalidad de alertas es efectiva y rápida.",
+            "No se encontraron errores críticos durante la prueba."
+        ]
+    }
+]
