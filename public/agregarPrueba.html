@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -180,7 +180,7 @@
 
       function agregarCampoConfiguracion() {
         const container = document.getElementById(
-          "configuracionPruebaContainer"
+          "configuracionPruebaContainer",
         );
 
         const div = document.createElement("div");
@@ -205,7 +205,7 @@
 
       function agregarCampoResultadosEsperados() {
         const container = document.getElementById(
-          "resultadosEsperadosContainer"
+          "resultadosEsperadosContainer",
         );
 
         const div = document.createElement("div");
@@ -230,7 +230,7 @@
 
       function agregarCampoResultadosObtenidos() {
         const container = document.getElementById(
-          "resultadosObtenidosContainer"
+          "resultadosObtenidosContainer",
         );
 
         const div = document.createElement("div");
@@ -282,10 +282,10 @@
           event.preventDefault();
 
           const configuracionPruebaKeys = Array.from(
-            document.querySelectorAll('[name="configuracionPruebaKey[]"]')
+            document.querySelectorAll('[name="configuracionPruebaKey[]"]'),
           ).map((input) => input.value);
           const configuracionPruebaValues = Array.from(
-            document.querySelectorAll('[name="configuracionPruebaValue[]"]')
+            document.querySelectorAll('[name="configuracionPruebaValue[]"]'),
           ).map((input) => input.value);
           const configuracionPrueba = {};
           configuracionPruebaKeys.forEach((key, index) => {
@@ -293,24 +293,24 @@
           });
 
           const resultadosEsperadosKeys = Array.from(
-            document.querySelectorAll('[name="resultadosEsperadosKey[]"]')
+            document.querySelectorAll('[name="resultadosEsperadosKey[]"]'),
           ).map((input) => input.value);
           const resultadosEsperadosValues = Array.from(
-            document.querySelectorAll('[name="resultadosEsperadosValue[]"]')
+            document.querySelectorAll('[name="resultadosEsperadosValue[]"]'),
           ).map((input) => input.value);
 
           const resultadosObtenidosKeys = Array.from(
-            document.querySelectorAll('[name="resultadosObtenidosKey[]"]')
+            document.querySelectorAll('[name="resultadosObtenidosKey[]"]'),
           ).map((input) => input.value);
           const resultadosObtenidosValues = Array.from(
-            document.querySelectorAll('[name="resultadosObtenidosValue[]"]')
+            document.querySelectorAll('[name="resultadosObtenidosValue[]"]'),
           ).map((input) => input.value);
 
           const conclusionesKeys = Array.from(
-            document.querySelectorAll('[name="conclusionesKey[]"]')
+            document.querySelectorAll('[name="conclusionesKey[]"]'),
           ).map((input) => input.value);
           const conclusionesValues = Array.from(
-            document.querySelectorAll('[name="conclusionesValue[]"]')
+            document.querySelectorAll('[name="conclusionesValue[]"]'),
           ).map((input) => input.value);
 
           const resultadosEsperados = {};
@@ -329,17 +329,17 @@
           });
 
           const equipoPruebas = Array.from(
-            document.querySelectorAll('[name="equipoPruebas[]"]')
+            document.querySelectorAll('[name="equipoPruebas[]"]'),
           ).map((input) => input.value);
           const observaciones = Array.from(
-            document.querySelectorAll('[name="observaciones[]"]')
+            document.querySelectorAll('[name="observaciones[]"]'),
           ).map((input) => input.value);
 
           const nuevaPrueba = {
             proyecto: document.getElementById("proyecto").value,
             fechaPrueba: document.getElementById("fechaPrueba").value,
             equipoPruebas: Array.from(
-              document.querySelectorAll('[name="equipoPruebas[]"]')
+              document.querySelectorAll('[name="equipoPruebas[]"]'),
             ).map((input) => input.value),
             requisitosProbados: document
               .getElementById("requisitosProbados")
@@ -354,7 +354,7 @@
             resultadosObtenidos: resultadosObtenidos,
             conclusiones: conclusiones,
             observaciones: Array.from(
-              document.querySelectorAll('[name="observaciones[]"]')
+              document.querySelectorAll('[name="observaciones[]"]'),
             ).map((input) => input.value),
           };
 

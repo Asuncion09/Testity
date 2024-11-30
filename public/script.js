@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => {
         if (!response.ok) {
           throw new Error(
-            `Error en la solicitud: ${response.status} ${response.statusText}`
+            `Error en la solicitud: ${response.status} ${response.statusText}`,
           );
         }
         return response.json();
@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const equipoPruebas = prueba.equipoPruebas || [];
           const observaciones = prueba.observaciones || [];
           const configuracionPrueba = renderKeyValueList(
-            prueba.configuracionPrueba || {}
+            prueba.configuracionPrueba || {},
           );
           const resultadosEsperados = renderKeyValueList(
-            prueba.resultadosEsperados || {}
+            prueba.resultadosEsperados || {},
           );
           const resultadosObtenidos = renderKeyValueList(
-            prueba.resultadosObtenidos || {}
+            prueba.resultadosObtenidos || {},
           );
           const conclusiones = renderKeyValueList(prueba.conclusiones || {});
 
@@ -63,7 +63,19 @@ document.addEventListener("DOMContentLoaded", () => {
           <ul>${resultadosEsperados}</ul>
 
           <p><strong>Resultados Obtenidos:</strong></p>
-          <ul>${resultadosObtenidos}</ul>
+          <ul id="resultados-obtenidos-${index}">
+          ${Object.entries(prueba.resultadosObtenidos || {})
+            .map(
+              ([clave, valor], i) => `
+                <li id="resultado-obtenido-${index}-${i}">
+                  <span class="resultado-clave">${clave}</span>: <span class="resultado-valor">${valor}</span>
+                  <input type="checkbox" id="check-${index}-${i}" data-id="${index}" />
+                </li>`,
+            )
+            .join("")}
+          </ul>         
+          <button onclick="calcularPorcentaje(${index})">Calcular Porcentaje</button>
+          <p id="resultado-${index}"></p>
 
           <p><strong>Conclusiones:</strong></p>
           <ul>${conclusiones}</ul>
@@ -80,94 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((error) => {
         console.error("Error al cargar las pruebas:", error);
-        document.getElementById(
-          "pruebas-container"
-        ).innerHTML = `<p>Error al cargar las pruebas: ${error.message}</p>`;
+        document.getElementById("pruebas-container").innerHTML =
+          `<p>Error al cargar las pruebas: ${error.message}</p>`;
       });
-  }
-
-  // Lógica para agregar una nueva prueba
-  const formAgregar = document.getElementById("agregarPruebaForm");
-  if (formAgregar) {
-    formAgregar.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      // Recopilar datos del formulario dinámico
-      const equipoPruebas = Array.from(
-        document.querySelectorAll('[name="equipoPruebas[]"]')
-      ).map((input) => input.value);
-
-      const observaciones = Array.from(
-        document.querySelectorAll('[name="observaciones[]"]')
-      ).map((input) => input.value);
-
-      const nuevaPrueba = {
-        proyecto: document.getElementById("proyecto").value,
-        fechaPrueba: document.getElementById("fechaPrueba").value,
-        equipoPruebas: document
-          .getElementById("equipoPruebas")
-          .value.split(",")
-          .map((miembro) => miembro.trim()),
-        requisitosProbados: document
-          .getElementById("requisitosProbados")
-          .value.split(",")
-          .map((item) => item.trim()),
-
-        configuracionPrueba: createJSONFromText(
-          document.getElementById("configuracionPrueba").value
-        ),
-        pasosPrueba: document
-          .getElementById("pasosPruebas")
-          .value.split(",")
-          .map((item) => item.trim()),
-
-        pasosPrueba: document
-          .getElementById("pasosPrueba")
-          .value.split(",")
-          .map((item) => item.trim()),
-
-        resultadosEsperados: createJSONFromText(
-          document.getElementById("resultadosEsperados").value
-        ),
-
-        resultadosObtenidos: createJSONFromText(
-          document.getElementById("resultadosObtenidos").value
-        ),
-
-        conclusiones: createJSONFromText(
-          document.getElementById("conclusiones").value
-        ),
-
-        observaciones: document
-          .getElementById("observaciones")
-          .value.split(".")
-          .map((obs) => obs.trim()),
-      };
-
-      fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(nuevaPrueba),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(
-              `Error en la solicitud: ${response.status} ${response.statusText}`
-            );
-          }
-          return response.json();
-        })
-        .then((data) => {
-          alert("Prueba agregada exitosamente");
-          window.location.href = "index.html";
-        })
-        .catch((error) => {
-          alert("Error al agregar la prueba");
-          console.error(error);
-        });
-    });
   }
 });
 
@@ -178,12 +105,33 @@ function renderKeyValueList(obj) {
 }
 
 function createJSONFromText(text) {
-  const lines = text.split("\n").map(line => line.trim()).filter(line => line.length > 0);
+  const lines = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
 
   const result = {};
   lines.forEach((line, index) => {
-    result[`item_${index + 1}`] = line;  // Asigna un nombre de clave dinámico
+    result[`item_${index + 1}`] = line;
   });
 
   return result;
+}
+
+function calcularPorcentaje(index) {
+  const checkboxes = document.querySelectorAll(`[data-id="${index}"]`);
+
+  const totalResultados = checkboxes.length;
+
+  const seleccionados = Array.from(checkboxes).filter(
+    (checkbox) => checkbox.checked,
+  ).length;
+
+  const porcentaje = (seleccionados / totalResultados) * 100;
+
+  const resultadoElement = document.getElementById(`resultado-${index}`);
+  resultadoElement.textContent =
+    porcentaje >= 70
+      ? `La prueba es válida (${porcentaje.toFixed(2)}%)`
+      : `La prueba no es válida (${porcentaje.toFixed(2)}%)`;
 }
